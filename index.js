@@ -1,12 +1,16 @@
 const express = require("express");
+const app = express();
 const userRouter = require("./routes/userRouter");
 
+require("dotenv").config();
+const db = require("./config/mongoose");
+
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+
+app.use("/", userRouter);
+
 const port = process.env.PORT || 8000;
-
-const app = express();
-
-app.get("/", userRouter);
-
 app.listen(port, (err) => {
   if (err) {
     console.log(`Error in creating server: ${err}`);
