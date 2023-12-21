@@ -1,12 +1,11 @@
 const express = require("express");
+const userRouter = require("./routes/userRouter");
 
 const port = process.env.PORT || 8000;
 
 const app = express();
 
-app.get("/", (req, res) => {
-  res.end("NEW PROJECT");
-});
+app.get("/", userRouter);
 
 app.listen(port, (err) => {
   if (err) {
