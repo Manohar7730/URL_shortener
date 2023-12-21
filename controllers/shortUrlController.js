@@ -13,7 +13,7 @@ module.exports.handleGenerateNewShortUrl = async (req, res) => {
       originalUrl: req.body.originalUrl,
     });
 
-    return res.json({ id: shortId });
+    return res.redirect("/");
   } catch (err) {
     console.error(err);
     return res.status(500).json({
@@ -33,6 +33,24 @@ module.exports.retrieveOriginalUrl = async (req, res) => {
     }
 
     res.redirect(entry.originalUrl);
+  } catch (err) {
+    console.error(err);
+    return res.status(500).json({
+      error: err.message,
+      message: "Internal Server Error",
+    });
+  }
+};
+
+module.exports.deleteShortUrl = async (req, res) => {
+  try {
+    const id = req.params.id;
+
+    // Find and remove the URL entry by ID
+    await URLShortener.findByIdAndDelete(id);
+
+    // Redirect back to the home page after deletion
+    res.redirect("/");
   } catch (err) {
     console.error(err);
     return res.status(500).json({

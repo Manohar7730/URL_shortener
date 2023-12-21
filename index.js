@@ -2,6 +2,9 @@ const express = require("express");
 const app = express();
 const userRouter = require("./routes/userRouter");
 
+app.set("view engine", "ejs");
+app.set("views", "./views");
+
 require("dotenv").config();
 const db = require("./config/mongoose");
 
