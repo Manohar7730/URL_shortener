@@ -13,7 +13,7 @@ module.exports.handleGenerateNewShortUrl = async (req, res) => {
       originalUrl: req.body.originalUrl,
     });
 
-    return res.redirect("/");
+    return res.redirect("/profile");
   } catch (err) {
     console.error(err);
     return res.status(500).json({
@@ -50,7 +50,7 @@ module.exports.deleteShortUrl = async (req, res) => {
     await URLShortener.findByIdAndDelete(id);
 
     // Redirect back to the home page after deletion
-    res.redirect("/");
+    res.redirect("/profile");
   } catch (err) {
     console.error(err);
     return res.status(500).json({

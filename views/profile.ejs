@@ -1,0 +1,46 @@
+<div class="container text-center">
+  <h1>URL Shortener</h1>
+  <form action="/shorten" method="POST">
+    <div class="mb-3">
+      <label for="fullUrl" class="form-label">URL</label>
+      <input
+        type="url"
+        class="form-control"
+        id="fullUrl"
+        name="originalUrl"
+        aria-describedby="emailHelp"
+        placeholder="Type Your Original Url"
+      />
+    </div>
+    <button type="submit" class="btn btn-primary">Shrink</button>
+  </form>
+  <table class="table table-striped table-responsive">
+    <thead>
+      <tr>
+        <th scope="col">Full URL</th>
+        <th scope="col">Short URL</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% URLShorteners.forEach((urlShortener) => { %>
+      <tr>
+        <td>
+          <a href="<%= urlShortener.originalUrl %>" target="_blank"
+            ><%= urlShortener.originalUrl %></a
+          >
+        </td>
+        <td>
+          <a href="<%= urlShortener.shortId %>" target="_blank"
+            ><%= urlShortener.shortId %></a
+          >
+        </td>
+        <td>
+          <form action="/delete/<%= urlShortener._id %>" method="POST">
+            <button type="submit" class="btn btn-danger">Delete</button>
+          </form>
+        </td>
+      </tr>
+      <% }); %>
+    </tbody>
+  </table>
+</div>
