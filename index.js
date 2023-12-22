@@ -1,8 +1,10 @@
 const express = require("express");
 const app = express();
+const expressLayouts = require("express-ejs-layouts");
 const userRouter = require("./routes/userRouter");
 
 app.set("view engine", "ejs");
+app.use(expressLayouts);
 app.set("views", "./views");
 
 require("dotenv").config();

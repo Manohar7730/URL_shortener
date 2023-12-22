@@ -1,0 +1,57 @@
+<div class="container">
+  <!-- Login Form -->
+  <fieldset>
+    <legend>Login Form</legend>
+    <form action="/signIn" method="post">
+      <!-- Email Input -->
+      <div class="mb-3 row">
+        <label for="inputEmail" class="col-sm-2 col-form-label">Email</label>
+        <div class="col-sm-10">
+          <input type="email" class="form-control" id="inputEmail" />
+        </div>
+      </div>
+
+      <!-- Password Input -->
+      <div class="mb-3 row">
+        <label for="inputPassword" class="col-sm-2 col-form-label"
+          >Password</label
+        >
+        <div class="col-sm-10">
+          <input type="password" class="form-control" id="inputPassword" />
+        </div>
+      </div>
+
+      <!-- Show Password Checkbox -->
+      <div class="mb-3 row">
+        <div class="col-sm-10 offset-sm-2">
+          <div class="form-check">
+            <!-- Add id="showPassword" to the checkbox -->
+            <input class="form-check-input" type="checkbox" id="showPassword" />
+            <label class="form-check-label" for="showPassword"
+              >Show Password</label
+            >
+          </div>
+        </div>
+      </div>
+
+      <!-- Form Buttons -->
+      <div class="mb-3 row">
+        <div class="col-sm-10 offset-sm-2">
+          <button type="submit" class="btn btn-success">Sign in</button>
+          <a class="btn btn-secondary" href="/" role="button">Back</a>
+          <a class="btn btn-primary" href="/register" role="button">Register</a>
+        </div>
+      </div>
+    </form>
+  </fieldset>
+</div>
+
+<script>
+  // Corrected the id to match the checkbox id in the HTML
+  var showPasswordCheckbox = document.getElementById("showPassword");
+  var passwordField = document.getElementById("inputPassword");
+
+  showPasswordCheckbox.addEventListener("change", function () {
+    passwordField.type = this.checked ? "text" : "password";
+  });
+</script>
