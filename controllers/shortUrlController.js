@@ -4,16 +4,17 @@ const URLShortener = require("../modals/urlShortener");
 module.exports.handleGenerateNewShortUrl = async (req, res) => {
   try {
     if (!req.body.originalUrl) {
-      return res.status(400).json({ error: "url is required" });
+      return res.status(400).json({ error: "URL is required" });
     }
 
     const shortId = nanoid(8);
     const createdEntry = await URLShortener.create({
       shortId,
       originalUrl: req.body.originalUrl,
+      user: req.user._id,
     });
 
-    return res.redirect("/profile");
+    return res.redirect(`/profile/${req.user._id}`);
   } catch (err) {
     console.error(err);
     return res.status(500).json({
@@ -26,7 +27,7 @@ module.exports.handleGenerateNewShortUrl = async (req, res) => {
 module.exports.retrieveOriginalUrl = async (req, res) => {
   try {
     const shortId = req.params.shortId;
-    const entry = await URLShortener.findOne({ shortId });
+    const entry = await URLShortener.findOne({ shortId, user: req.user._id });
 
     if (!entry) {
       return res.status(404).json({ error: "Short URL not found" });
@@ -42,6 +43,8 @@ module.exports.retrieveOriginalUrl = async (req, res) => {
   }
 };
 
+// userController.js
+
 module.exports.deleteShortUrl = async (req, res) => {
   try {
     const id = req.params.id;
@@ -49,8 +52,8 @@ module.exports.deleteShortUrl = async (req, res) => {
     // Find and remove the URL entry by ID
     await URLShortener.findByIdAndDelete(id);
 
-    // Redirect back to the home page after deletion
-    res.redirect("/profile");
+    // Redirect back to the user's profile after deletion
+    return res.redirect(`/profile/${req.user._id}`);
   } catch (err) {
     console.error(err);
     return res.status(500).json({

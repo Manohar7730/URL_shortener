@@ -6,7 +6,9 @@ const URLShortener = require("../modals/urlShortener");
 
 module.exports.home = async (req, res) => {
   try {
-    // Render the home view with the fetched URLs
+    if (req.isAuthenticated()) {
+      res.redirect("/profile/" + req.user._id);
+    }
     return res.render("home", {
       title: "Home",
     });
@@ -21,6 +23,9 @@ module.exports.home = async (req, res) => {
 
 module.exports.login = async (req, res) => {
   try {
+    if (req.isAuthenticated()) {
+      res.redirect("/profile/" + req.user._id);
+    }
     return res.render("login", {
       title: "Login Page",
     });
@@ -35,6 +40,9 @@ module.exports.login = async (req, res) => {
 
 module.exports.register = async (req, res) => {
   try {
+    if (req.isAuthenticated()) {
+      res.redirect("/profile/" + req.user._id);
+    }
     return res.render("register", {
       title: "Register Page",
     });
@@ -67,42 +75,56 @@ module.exports.signUp = async (req, res) => {
   });
   try {
     const userData = await newUser.save();
-
     return res.status(201).redirect("/login");
   } catch (err) {
     console.error(err);
-    return res.status(500).redirect("register");
+    return res.status(500).redirect("/register");
   }
 };
 
 module.exports.signIn = async (req, res) => {
-  console.log(req.body);
+  try {
+    console.log(req.body);
 
-  // Validating the data
-  const { error } = loginValidation(req.body);
-  if (error) {
-    return res.status(400).send(error);
-  }
+    // Validating the data
+    const { error } = loginValidation(req.body);
+    if (error) {
+      return res.status(400).send(error);
+    }
 
-  // Checking if email exists
-  const user = await User.findOne({ email: req.body.email });
-  if (!user) {
-    return res.status(400).send("Email not found");
-  }
+    // Checking if email exists
+    const user = await User.findOne({ email: req.body.email });
+    if (!user) {
+      return res.status(400).send("Email not found");
+    }
 
-  // Password is correct or not
-  const validPass = await bcrypt.compare(req.body.password, user.password);
-  if (!validPass) {
-    return res.status(400).send("Invalid Credentials");
+    // Password is correct or not
+    const validPass = await bcrypt.compare(req.body.password, user.password);
+    if (!validPass) {
+      return res.status(400).send("Invalid Credentials");
+    }
+
+    req.login(user, function (err) {
+      if (err) {
+        console.error(err);
+        return res.redirect("/login");
+      }
+      return res.redirect(`/profile/${user._id}`);
+    });
+  } catch (err) {
+    console.error(err);
+    return res.status(500).json({
+      error: err.message,
+      message: "Internal Server Error",
+    });
   }
-  res.status(201).redirect("/profile");
 };
 
 module.exports.profile = async (req, res) => {
   try {
-    const URLShorteners = await URLShortener.find({});
+    const URLShorteners = await URLShortener.find({ user: req.user._id });
     return res.render("profile", {
-      title: "profile",
+      title: "Profile",
       URLShorteners: URLShorteners,
     });
   } catch (err) {
@@ -112,4 +134,14 @@ module.exports.profile = async (req, res) => {
       message: "Internal Server Error",
     });
   }
+};
+
+module.exports.logout = function (req, res, next) {
+  req.logout(function (err) {
+    if (err) {
+      return next(err);
+    }
+    req.session.destroy();
+    res.redirect("/");
+  });
 };
