@@ -1,5 +1,7 @@
+// Importing the mongoose library
 const mongoose = require("mongoose");
 
+// Defining the schema for the URLShortener model
 const shortUrlSchema = new mongoose.Schema(
   {
     originalUrl: {
@@ -9,16 +11,18 @@ const shortUrlSchema = new mongoose.Schema(
     shortId: {
       type: String,
       required: true,
-      unique: true,
+      unique: true, // Ensuring shortId uniqueness
     },
     user: {
       type: mongoose.Schema.Types.ObjectId,
-      ref: "User",
+      ref: "User", // Referencing the User model for association
     },
   },
-  { timestamps: true }
+  { timestamps: true } // Adding timestamps for createdAt and updatedAt
 );
 
-const URLShortener = mongoose.model("urlShortener", shortUrlSchema);
+// Creating the URLShortener model using the defined schema
+const URLShortener = mongoose.model("URLShortener", shortUrlSchema);
 
+// Exporting the URLShortener model for use in other parts of the application
 module.exports = URLShortener;

@@ -1,7 +1,10 @@
 <div class="container">
   <!-- Login Form -->
   <fieldset>
+    <!-- Form Legend -->
     <legend>Login Form</legend>
+
+    <!-- Form Submission -->
     <form action="/signIn" method="post">
       <!-- Email Input -->
       <div class="mb-3 row">
@@ -35,7 +38,7 @@
       <div class="mb-3 row">
         <div class="col-sm-10 offset-sm-2">
           <div class="form-check">
-            <!-- Add id="showPassword" to the checkbox -->
+            <!-- Checkbox for Showing Password -->
             <input class="form-check-input" type="checkbox" id="showPassword" />
             <label class="form-check-label" for="showPassword"
               >Show Password</label
@@ -47,8 +50,11 @@
       <!-- Form Buttons -->
       <div class="mb-3 row">
         <div class="col-sm-10 offset-sm-2">
+          <!-- Submit Button -->
           <button type="submit" class="btn btn-success">Sign in</button>
+          <!-- Back Button -->
           <a class="btn btn-secondary" href="/" role="button">Back</a>
+          <!-- Register Button -->
           <a class="btn btn-primary" href="/register" role="button">Register</a>
         </div>
       </div>
@@ -57,10 +63,11 @@
 </div>
 
 <script>
-  // Corrected the id to match the checkbox id in the HTML
+  // JavaScript for Toggling Password Visibility
   var showPasswordCheckbox = document.getElementById("showPassword");
   var passwordField = document.getElementById("inputPassword");
 
+  // Event Listener for Checkbox Change
   showPasswordCheckbox.addEventListener("change", function () {
     passwordField.type = this.checked ? "text" : "password";
   });

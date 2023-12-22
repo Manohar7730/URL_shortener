@@ -1,5 +1,6 @@
 const joi = require("joi");
 
+// Validation schema for user registration
 const registerValidation = (data) => {
   const schema = joi.object({
     email: joi.string().email().min(6).required(),
@@ -23,8 +24,10 @@ const registerValidation = (data) => {
   return schema.validate(data);
 };
 
+// Export the registration validation function
 module.exports.registerValidation = registerValidation;
 
+// Validation schema for user login
 const loginValidation = (data) => {
   const schema = joi.object({
     email: joi.string().email().min(6).required(),
@@ -41,4 +44,5 @@ const loginValidation = (data) => {
   return schema.validate(data);
 };
 
+// Export the login validation function
 module.exports.loginValidation = loginValidation;

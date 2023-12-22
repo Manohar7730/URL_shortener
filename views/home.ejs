@@ -1,8 +1,10 @@
+<!-- Navigation buttons for login and registration -->
 <div class="container text-center">
   <a class="btn btn-primary" href="/login" role="button">Login</a>
   <a class="btn btn-primary" href="/register" role="button">Register</a>
 </div>
 
+<!-- Button to trigger the modal -->
 <button
   type="button"
   class="btn btn-warning"
@@ -22,6 +24,7 @@
 >
   <div class="modal-dialog">
     <div class="modal-content">
+      <!-- Modal header -->
       <div class="modal-header">
         <h1 class="modal-title fs-5" id="ModalLabel">Instructions</h1>
         <button
@@ -31,18 +34,25 @@
           aria-label="Close"
         ></button>
       </div>
+
+      <!-- Modal body with instructions -->
       <div class="modal-body">
         <ul class="list-group list-group-flush">
+          <!-- Instruction for first-time users -->
           <li class="list-group-item">
             If you are a first-time user, please register using the registration
             form.
           </li>
+
+          <!-- Instruction for already registered users -->
           <li class="list-group-item">
             If you are already registered, you can proceed to login using your
             credentials.
           </li>
         </ul>
       </div>
+
+      <!-- Modal footer with close button -->
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
           Close
