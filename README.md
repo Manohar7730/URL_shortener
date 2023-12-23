@@ -11,18 +11,19 @@ https://github.com/Manohar7730/URL_shortener/assets/120391462/f907eecf-aee1-45f9
 
 ## Table of Contents
 
- - [Features]()
- - [Technologies Used]()
- - [Installation]()
- - [Project Structure]()
- - [Usage]()
- - [Screenshots]()
- - [API Documentation]()
- - [Contributing]()
- - [Author]()
- - [FeedBack]()
+- [Features](#features)
+- [Technologies Used](#technologies-used)
+- [Installation](#installation)
+- [Project Structure](#project-structure)
+- [Usage](#usage)
+- [Screenshots](#screenshots)
+- [API Documentation](#api-doc)
+- [Contributing](#contributing)
+- [Author](#author)
+- [Feedback](#feedback)
 
 ## Features
+<a name="features"></a>
 
 - User registration and authentication
 - URL shortening with personalized user accounts
@@ -34,6 +35,7 @@ https://github.com/Manohar7730/URL_shortener/assets/120391462/f907eecf-aee1-45f9
 
 
 ## Technologies Used
+<a name="technologies-used"></a>
 
 - Node.js
 - Express.js
@@ -47,6 +49,7 @@ https://github.com/Manohar7730/URL_shortener/assets/120391462/f907eecf-aee1-45f9
 
 
 ## Installation
+<a name="installation"></a>
 
 1) Clone the repository:
 
@@ -77,6 +80,8 @@ Replace your_mongodb_uri with your MongoDB Atlas connection string and set a uni
     npm start
 ```
 ## Project Struture
+<a name="project-structure"></a>
+
 ```bash
 url_shortener/
 |-- config/
@@ -104,6 +109,7 @@ url_shortener/
 ```
 
 ## Usage
+<a name="usage"></a>
 
 1) Register a new account or log in if you already have an account.
 2) On the home page, enter the original URL you want to shorten and click "Shrink."
@@ -113,12 +119,15 @@ url_shortener/
 
 
 ## Screenshots
+<a name="screenshots"></a>
+
 ![Screenshot 2023-12-23 145028](https://github.com/Manohar7730/URL_shortener/assets/120391462/8b2c2995-a74f-4fd5-86d3-f35be1c4881c)
 
 ![Screenshot 2023-12-23 145114](https://github.com/Manohar7730/URL_shortener/assets/120391462/34c2074c-1f7c-474d-a553-ddecc16deb3b)
 
 
-## API Reference
+## API Documentation
+<a name="api-doc"></a>
 
 Before using the API endpoints that require authentication, such as shortening a URL or deleting a shortened URL, users need to log in and obtain a session cookie. Follow the steps below to authenticate and use the API:
 
@@ -189,15 +198,18 @@ Now that you have obtained the session cookie, use it in your subsequent request
 
 
 ## Contributing
+<a name="contributing"></a>
 
 Contributions are always welcome!Feel free to open issues or pull requests.
 
 
 ## Authors
+<a name="author"></a>
 
 - [@Manohar7730](https://github.com/Manohar7730)
 
 ## Feedback
+<a name="feedback"></a>
 
 If you have any feedback, please reach out to us at manohar20century@gmail.com
 
