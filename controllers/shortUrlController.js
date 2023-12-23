@@ -4,6 +4,11 @@ const URLShortener = require("../modals/urlShortener");
 // Controller function to handle the generation of a new short URL
 module.exports.handleGenerateNewShortUrl = async (req, res) => {
   try {
+    // Check if the user is authenticated
+    if (!req.isAuthenticated()) {
+      return res.status(401).json({ error: "Unauthorized" });
+    }
+
     // Check if the original URL is provided
     if (!req.body.originalUrl) {
       return res.status(400).json({ error: "URL is required" });
@@ -20,7 +25,7 @@ module.exports.handleGenerateNewShortUrl = async (req, res) => {
     });
 
     // Redirect to the user's profile after successfully creating the short URL
-    return res.redirect(`/profile/${req.user._id}`);
+    return res.redirect("/");
   } catch (err) {
     // Handle errors and send an appropriate response
     console.error(err);
