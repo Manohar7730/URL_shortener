@@ -24,7 +24,7 @@ const db = require("./config/mongoose");
 app.use(
   session({
     name: "user",
-    secret: "something",
+    secret: process.env.SECRET,
     saveUninitialized: false,
     resave: false,
     maxAge: 1000 * 60 * 15, // 15 minutes
