@@ -7,7 +7,7 @@ This project is a simple URL shortener that allows users to shorten long URLs in
 
 
 ## Demo
-https://github.com/Manohar7730/URL_shortener/assets/120391462/f907eecf-aee1-45f9-b10c-0df579afa620
+![preview](https://github.com/Manohar7730/URL_shortener/assets/120391462/46417787-9974-4837-a7e6-aff054a3c5fa)
 
 ## Table of Contents
 
