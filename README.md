@@ -1,8 +1,6 @@
 
 # [URL Shortener Project](https://url-shortener-aey6.onrender.com) <-- Explore
 
-[Hoisting Link]
-
 This project is a simple URL shortener that allows users to shorten long URLs into concise and shareable links. It includes user authentication features for personalized short URLs.
 
 
